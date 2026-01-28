@@ -1,5 +1,5 @@
  #
- # This file is part of the Pico FIDO2 distribution (https://github.com/polhenarejos/pico-fido2).
+ # This file is part of the Pico FIDO2 distribution (https://github.com/librekeys/pico-fido2).
  # Copyright (c) 2025 Pol Henarejos.
  #
  # This program is free software: you can redistribute it and/or modify
