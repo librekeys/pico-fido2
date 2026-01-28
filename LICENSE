@@ -1,3 +1,26 @@
+This project is licensed under the GNU Affero General Public License v3
+(AGPLv3). The full text of this license is reproduced at the bottom of 
+this document.
+The copyright holders are indicated at the top of each file.
+
+The project is using the following libraries and sdk:
+- mdebtls, licensed under Apache-2.0 and GPL-2.0-or-later licenses,
+  https://github.com/Mbed-TLS/mbedtls
+- tinyUSB, licensed under the MIT License,
+  https://github.com/hathach/tinyusb  
+- tinycbor, licensed under the MIT license,
+  https://github.com/intel/tinycbor
+- mlkem-native, the Apache-2.0 license OR the ISC license OR the MIT 
+  license, https://github.com/pq-code-package/mlkem-native
+- USB CCID from Raspberry Pi (Trading) Ltd, licensed under the 
+  BSD-3-Clause license, 
+- Raspberry Pi Pico SDK, licensed under BSD 3-Clause "New" or "Revised" 
+  License, https://github.com/raspberrypi/pico-sdk
+- Espressif IoT Development Framework (ESP-IDF), licensed under Apache 
+  License Version 2.0, https://github.com/espressif/esp-idf
+
+________________________________________________________________________
+
                     GNU AFFERO GENERAL PUBLIC LICENSE
                        Version 3, 19 November 2007
 

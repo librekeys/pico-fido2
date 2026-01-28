@@ -1,6 +1,8 @@
 # Pico FIDO2
 
-This project transforms your Raspberry Pi Pico or ESP32 microcontroller into an integrated FIDO Passkey **and** OpenPGP smartcard, functioning like a standard USB Passkey for authentication and as a smartcard for cryptographic operations.
+This project transforms your Raspberry RP235x or ESP32 microcontroller into an integrated FIDO Passkey **and** OpenPGP smartcard, functioning like a standard USB Passkey for authentication and as a smartcard for cryptographic operations.
+
+This is a fork of the last community edition version of the pico-fido2 firmware, from December 9th 2025, that was available on https://github.com/polhenarejos/pico-fido2 before that repository was deleted and replaced by something else.
 
 ---
 
@@ -72,20 +74,6 @@ Microcontrollers RP2350 and ESP32-S3 are designed to support secure environments
 
 ---
 
-## Download
-
-**If you own an ESP32-S3 board, go to ESP32 Flasher for flashing your Pico FIDO2.**
-
-If you own a Raspberry Pico (RP2040 or RP2350), go to the Download page, select your vendor and model and download the proper firmware; or go to the Release page and download the UF2 file for your board.
-
-Note that UF2 files are shipped with a dummy VID/PID to avoid license issues (FEFF:FCFD). If you plan to use it with other proprietary tools, you should modify Info.plist of CCID driver to add these VID/PID or use the Pico Commissioner.
-
-You can use whatever VID/PID (i.e., 234b:0000 from FISJ), but remember that you are not authorized to distribute the binary with a VID/PID that you do not own.
-
-Note that the pure-browser option Pico Commissioner is the most recommended.
-
----
-
 ## Build for Raspberry Pico
 
 Before building, ensure you have installed the toolchain for the Pico and that the Pico SDK is properly located on your drive.
@@ -115,6 +103,8 @@ Additionally, you can pass the `VIDPID=value` parameter to build the firmware wi
 - `Gnuk`
 - `GnuPG`
 
+You can use whatever VID/PID for your own personal use. **But remember that you are not authorized to distribute the binary with a VID/PID that you do not own.**
+
 After running `make`, the binary file `pico_fido2.uf2` will be generated. To load this onto your Pico board:
 
 1. Put the Pico board into loading mode by holding the `BOOTSEL` button while plugging it in.
@@ -122,53 +112,13 @@ After running `make`, the binary file `pico_fido2.uf2` will be generated. To loa
 3. Once the file is copied, the Pico mass storage device will automatically disconnect, and the Pico board will reset with the new firmware.
 4. A blinking LED will indicate that the device is ready to work.
 
-## Driver
+To configure your device you can use the [picoforge desktop application ](https://github.com/librekeys/picoforge).
+
+## Drivers
 
 Pico FIDO2 uses the `HID` driver for FIDO and `CCID` for OpenPGP, both present in all major operating systems. It should be detected by all OS and browser/applications just like normal USB FIDO keys and smartcards.
 
-## License and Commercial Use
+## License
 
-This project is available under two editions:
-
-**Community Edition (FOSS)**
-- Released under the GNU Affero General Public License v3 (AGPLv3).
-- You are free to study, modify, and run the code, including for internal evaluation.
-- If you distribute modified binaries/firmware, OR if you run a modified version of this project as a network-accessible service, you must provide the corresponding source code to the users of that binary or service, as required by AGPLv3.
-- No warranty. No SLA. No guaranteed support.
-
-**Enterprise / Commercial Edition**
-- Proprietary license for organizations that want to:
-  - run this in production with multiple users/devices,
-  - integrate it into their own product/appliance,
-  - enforce corporate policies (PIN policy, admin/user roles, revocation),
-  - deploy it as an internal virtualized / cloud-style service,
-  - and *not* be required to publish derivative source code.
-- Base package includes:
-  - commercial license (no AGPLv3 disclosure obligation for your modifications / integration)
-  - onboarding call
-  - access to officially signed builds
-- Optional / on-demand enterprise components that can be added case-by-case:
-  - ability to operate in multi-user / multi-device environments
-  - device inventory, traceability and secure revocation/offboarding
-  - custom attestation, per-organization device identity / anti-cloning
-  - virtualization / internal "HSM or auth backend" service for multiple teams or tenants
-  - post-quantum (PQC) key material handling and secure PQC credential storage
-  - hierarchical deterministic key derivation (HD wallet–style key trees for per-user / per-tenant keys, firmware signing trees, etc.)
-  - cryptographically signed audit trail / tamper-evident logging
-  - dual-control / two-person approval for high-risk operations
-  - secure key escrow / disaster recovery strategy
-  - release-signing / supply-chain hardening toolchain
-  - policy-locked hardened mode ("FIPS-style profile")
-  - priority security-response SLA
-  - white-label demo / pre-sales bundle
-
-Typical licensing models:
-- Internal use (single legal entity, including internal private cloud / virtualized deployments).
-- OEM / Redistribution / Service (ship in your product OR offer it as a service to third parties).
-
-These options are scoped and priced individually depending on which components you actually need.
-
-For commercial licensing and enterprise features, email pol@henarejos.me
-Subject: `ENTERPRISE LICENSE <your company name>`
-
-See `ENTERPRISE.md` for details.
+This project is released under the GNU Affero General Public License v3 (AGPLv3).
+A copy of the AGPLv3 license is available in the `LICENSE` file.
