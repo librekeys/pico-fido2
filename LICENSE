@@ -12,8 +12,8 @@ The project is using the following libraries and sdk:
   https://github.com/intel/tinycbor
 - mlkem-native, the Apache-2.0 license OR the ISC license OR the MIT 
   license, https://github.com/pq-code-package/mlkem-native
-- USB CCID from Raspberry Pi (Trading) Ltd, licensed under the BSD 
-  license, 
+- USB CCID from Raspberry Pi (Trading) Ltd, licensed under the 
+  BSD-3-Clause license, 
 - Raspberry Pi Pico SDK, licensed under BSD 3-Clause "New" or "Revised" 
   License, https://github.com/raspberrypi/pico-sdk
 - Espressif IoT Development Framework (ESP-IDF), licensed under Apache 
