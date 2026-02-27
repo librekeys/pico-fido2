@@ -76,12 +76,13 @@ Microcontrollers RP2350 and ESP32-S3 are designed to support secure environments
 
 ## Build for Raspberry Pico
 
+### Using CMake
+
 Before building, ensure you have installed the toolchain for the Pico and that the Pico SDK is properly located on your drive.
 
 ```
-git clone https://github.com/youruser/pico-fido2
+git clone https://github.com/librekeys/pico-fido2; cd pico-fido2
 git submodule update --init --recursive
-cd pico-fido2
 mkdir build
 cd build
 PICO_SDK_PATH=/path/to/pico-sdk cmake .. -DPICO_BOARD=board_type -DUSB_VID=0x1D50 -DUSB_PID=0x619B
@@ -113,7 +114,22 @@ After running `make`, the binary file `pico_fido2.uf2` will be generated. To loa
 3. Once the file is copied, the Pico mass storage device will automatically disconnect, and the Pico board will reset with the new firmware.
 4. A blinking LED will indicate that the device is ready to work.
 
-To configure your device you can use the [picoforge desktop application ](https://github.com/librekeys/picoforge).
+### Using Nix
+
+If you have Nix installed, you can build directly using the flake:
+
+```bash
+git clone https://github.com/librekeys/pico-fido2; cd pico-fido2
+# Build firmware
+nix build .#
+# Build with EdDSA support
+nix build .#pico-fido2-eddsa
+# firmware with VIDPID
+nix build .#pico-fido2-Yubikey5
+# Build with EdDSA support and VIDPID
+nix build .#pico-fido2-eddsa-Yubikey5
+# firmware will be located at ./result/pico_fido2.uf2
+```
 
 ## Drivers
 
@@ -125,4 +141,5 @@ This project is released under the GNU Affero General Public License v3 (AGPLv3)
 A copy of the AGPLv3 license is available in the `LICENSE` file.
 
 ## Credits
+
 This project uses libraries and portion of code from other projects that are detailed in the `LICENSE` file.
