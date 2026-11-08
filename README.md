@@ -130,6 +130,18 @@ Additionally, you can pass the `VIDPID=value` parameter to build the firmware wi
 You can use whatever VID/PID for your own personal use. **But remember that you are not authorized to distribute the binary with a VID/PID that you do not own.**
 The VID/PID `1D50:619B` is provided to the project by [OpenMoko](https://wiki.openmoko.org/wiki/USB_Product_IDs). It can only be used for builds distributed under a free and open source license.
 
+### EdDSA (Ed25519) support
+
+EdDSA support (Ed25519 and Ed448, e.g. for `ssh-keygen -t ed25519-sk`) is disabled by default. To enable it, add `-DENABLE_EDDSA=1` to the `cmake` command. This switches the `pico-keys-sdk/mbedtls` submodule to the [`mbedtls-3.6-eddsa`](https://github.com/librekeys/mbedtls/tree/mbedtls-3.6-eddsa) branch, which is fetched at configure time. Configuring again without the option switches it back.
+
+On RP2350 boards the firmware is copied to RAM at boot, and a default `Release` build with EdDSA enabled makes the board panic with `Out of memory` during boot. Build with `-DCMAKE_BUILD_TYPE=MinSizeRel` when enabling EdDSA, so that it optimizes for size instead of speed:
+
+```
+PICO_SDK_PATH=/path/to/pico-sdk cmake .. -DPICO_BOARD=pico2 -DENABLE_EDDSA=1 -DCMAKE_BUILD_TYPE=MinSizeRel
+```
+
+EdDSA is only available for Pico builds; the option has no effect on ESP32.
+
 After running `make`, the binary file `pico_fido2.uf2` will be generated. To load this onto your Pico board:
 
 1. Put the Pico board into loading mode by holding the `BOOTSEL` button while plugging it in.
